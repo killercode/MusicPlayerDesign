@@ -2,7 +2,9 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MusicPlayerDesign"
-             StartupUri="MainWindow.xaml">
+             StartupUri="MainWindow.xaml"
+             xmlns:views="clr-namespace:MusicPlayerDesign.Views"
+             xmlns:viewmodels="clr-namespace:MusicPlayerDesign.ViewModels">
     <Application.Resources>
 
         <SolidColorBrush x:Key="n1_1" Color="#222831" />
@@ -18,8 +20,15 @@
         <ImageBrush x:Key="pause_Brush" ImageSource="/Icons/./pause-button.png"/>
         <ImageBrush x:Key="next_Brush" ImageSource="/Icons/./next.png"/>
         <ImageBrush x:Key="repeat_Brush" ImageSource="/Icons/./repeat.png"/>
+        <ImageBrush x:Key="openFileExplorer_Brush" ImageSource="/Icons/./open-file-explorer.png"/>
+        <ImageBrush x:Key="addFolder_Brush" ImageSource="/Icons/./add-folder.png"/>
 
-
+        <DataTemplate DataType="{x:Type viewmodels:MusicListViewModel}">
+            <views:MusicListView></views:MusicListView>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewmodels:AddFolderViewModel}">
+            <views:AddFolderView></views:AddFolderView>
+        </DataTemplate>
 
     </Application.Resources>
 </Application>

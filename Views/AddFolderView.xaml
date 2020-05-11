@@ -1,0 +1,105 @@
+﻿<UserControl x:Class="MusicPlayerDesign.Views.AddFolderView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MusicPlayerDesign.Views"
+             xmlns:viewmodel="clr-namespace:MusicPlayerDesign.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" 
+             d:DesignWidth="400"
+             Background="{DynamicResource n1_1}">
+    
+    <UserControl.DataContext>
+        <viewmodel:AddFolderViewModel></viewmodel:AddFolderViewModel>
+    </UserControl.DataContext>
+
+
+    <UserControl.Resources>
+        <!-- _____________________Transparent Button Style_____________________ -->
+        <Style x:Key="TransparentButtonStyle" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid Background="{TemplateBinding Background}">
+                            <ContentPresenter 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="1"
+               Grid.Row="0"
+               Height="30"
+               VerticalAlignment="Bottom"
+               Foreground="{DynamicResource n1_4}"
+               Content="Add folder path:"
+               VerticalContentAlignment="Bottom">
+        </Label>
+
+        <TextBox Name="FolderDirectoryText"
+                 HorizontalContentAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 BorderThickness="0"
+                 Background="{DynamicResource n1_2}"
+                 Foreground="{DynamicResource n1_4}"
+                 FontWeight="Bold"
+                 Grid.Row="1"
+                 Grid.Column="1"
+                 Grid.ColumnSpan="3"
+                 Height="40">
+        </TextBox>
+
+
+        <Button Name="AddFolderButton"
+                BorderThickness="0"
+                Style="{DynamicResource TransparentButtonStyle}"
+                Grid.Column="4"
+                Grid.Row="1" 
+                Grid.ColumnSpan="1" 
+                Grid.RowSpan="1"
+                Height="15"
+                Width="15"
+                HorizontalAlignment="Left"
+                Margin="10,0,0,0"
+                Background="{DynamicResource addFolder_Brush}">
+        </Button>
+
+        <Button Name="OpenFileExplorer"
+                BorderThickness="0"
+                Style="{DynamicResource TransparentButtonStyle}"
+                Grid.Column="3"
+                Grid.Row="0" 
+                Grid.ColumnSpan="1" 
+                Grid.RowSpan="1"
+                Height="20"
+                Width="20"
+                HorizontalAlignment="Right"
+                Margin="0,0,10,0"
+                VerticalAlignment="Bottom"
+                Background="{DynamicResource openFileExplorer_Brush}">
+        </Button>
+
+    </Grid>
+</UserControl>

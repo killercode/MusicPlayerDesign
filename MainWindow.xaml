@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MusicPlayerDesign"
         xmlns:views="clr-namespace:MusicPlayerDesign.Views"
+        xmlns:viewmodels="clr-namespace:MusicPlayerDesign.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="600" 
@@ -16,13 +17,8 @@
         Icon="Icons/app-icon.ico">
 
 
-    <Window.Resources>
-        
-    </Window.Resources>
-    
-    
-    
-    <Grid DataContext="views">
+
+    <Grid>
 
         <Grid.Resources>
             <Style x:Key="TransparentButtonStyle" TargetType="{x:Type Button}">
@@ -68,7 +64,9 @@
                         Style="{DynamicResource TransparentButtonStyle}"
                         Grid.Column="0"
                         Margin="8,0,0,0"
-                        Background="{DynamicResource chooseFolderBrush}">
+                        Background="{DynamicResource chooseFolderBrush}"
+                        Command="{Binding ViewChanger}"
+                        CommandParameter="ChooseFolder">
                 </Button>
 
                 <Button x:Name="Close"
@@ -102,7 +100,8 @@
             </Grid>
         </DockPanel>
 
-        <ContentControl Grid.Row="1"></ContentControl>
+        <ContentControl Grid.Row="1"
+                        Content="{Binding SelectedViewModel}"></ContentControl>
         
     </Grid>
 </Window>

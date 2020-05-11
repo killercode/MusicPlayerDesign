@@ -55,8 +55,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\ViewChanger.cs" />
+    <Compile Include="Models\FileHandler.cs" />
+    <Compile Include="ViewModels\AddFolderViewModel.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\MusicListModel.cs" />
+    <Compile Include="ViewModels\MusicListViewModel.cs" />
+    <Compile Include="Views\AddFolderView.xaml.cs">
+      <DependentUpon>AddFolderView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MusicListView.xaml.cs">
       <DependentUpon>MusicListView.xaml</DependentUpon>
     </Compile>
@@ -72,6 +79,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\AddFolderView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MusicListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -118,9 +129,6 @@
     <Resource Include="Icons\play-button.png" />
     <Resource Include="Icons\repeat.png" />
     <Resource Include="Icons\resize-button.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Views\folder.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

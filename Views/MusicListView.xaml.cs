@@ -18,20 +18,11 @@ namespace MusicPlayerDesign.Views
     /// <summary>
     /// Interaction logic for MusicListView.xaml
     /// </summary>
-    public partial class MusicListView : Page
+    public partial class MusicListView : UserControl
     {
         public MusicListView()
         {
             InitializeComponent();
-
-            List<TodoItem> items = new List<TodoItem>();
-            items.Add(new TodoItem() { Title = "Complete this WPF tutorial", Completion = 45 });
-        }
-
-        public class TodoItem
-        {
-            public string Title { get; set; }
-            public int Completion { get; set; }
         }
     }
 }

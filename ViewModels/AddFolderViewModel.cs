@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicPlayerDesign.ViewModels
 {
-    class MusicListModel
+    public class AddFolderViewModel:BaseViewModel
     {
     }
 }

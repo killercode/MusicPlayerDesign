@@ -12,19 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using MusicPlayerDesign.ViewModels;
 
-namespace MusicPlayerDesign
+namespace MusicPlayerDesign.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AddFolderView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AddFolderView : UserControl
     {
-        public MainWindow()
+        public AddFolderView()
         {
             InitializeComponent();
-            DataContext = new MainViewModel();
         }
     }
 }
