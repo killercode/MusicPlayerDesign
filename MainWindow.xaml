@@ -1,0 +1,108 @@
+﻿<Window x:Class="MusicPlayerDesign.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MusicPlayerDesign"
+        xmlns:views="clr-namespace:MusicPlayerDesign.Views"
+        mc:Ignorable="d"
+        Title="MainWindow" 
+        Height="600" 
+        Width="400"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="{DynamicResource n1_1}"
+        Icon="Icons/app-icon.ico">
+
+
+    <Window.Resources>
+        
+    </Window.Resources>
+    
+    
+    
+    <Grid DataContext="views">
+
+        <Grid.Resources>
+            <Style x:Key="TransparentButtonStyle" TargetType="{x:Type Button}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Grid Background="{TemplateBinding Background}">
+                                <ContentPresenter 
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Grid.Resources>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+
+
+        <DockPanel Background="{DynamicResource n1_2}"
+                   Grid.Column="0"
+                   Grid.Row="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="20"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="ChooseFolder"
+                        Width="20"
+                        Height="20"
+                        Style="{DynamicResource TransparentButtonStyle}"
+                        Grid.Column="0"
+                        Margin="8,0,0,0"
+                        Background="{DynamicResource chooseFolderBrush}">
+                </Button>
+
+                <Button x:Name="Close"
+                        Width="13"
+                        Height="13"
+                        Style="{DynamicResource TransparentButtonStyle}"
+                        Grid.Column="7"
+                        Margin="0,3,0,0"
+                        Background="{DynamicResource closeBrush}">
+                </Button>
+
+                <Button x:Name="Resize"
+                        Width="15"
+                        Height="15"
+                        Style="{DynamicResource TransparentButtonStyle}"
+                        Grid.Column="6"
+                        Margin="0,3,0,0"
+                        Background="{DynamicResource resizeBrush}">
+                </Button>
+
+                <Button x:Name="Minimize"
+                        Width="12"
+                        Height="12"
+                        Style="{DynamicResource TransparentButtonStyle}"
+                        Grid.Column="5"
+                        Margin="0,3,0,0"
+                        Background="{DynamicResource minimizeBrush}">
+                </Button>
+
+
+            </Grid>
+        </DockPanel>
+
+        <ContentControl Grid.Row="1"></ContentControl>
+        
+    </Grid>
+</Window>

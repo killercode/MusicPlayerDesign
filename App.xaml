@@ -1,0 +1,25 @@
+﻿<Application x:Class="MusicPlayerDesign.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:MusicPlayerDesign"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="n1_1" Color="#222831" />
+        <SolidColorBrush x:Key="n1_2" Color="#30475e" />
+        <SolidColorBrush x:Key="n1_3" Color="#c1a57b" />
+        <SolidColorBrush x:Key="n1_4" Color="#ececec" />
+        <ImageBrush x:Key="chooseFolderBrush" ImageSource="/Icons/./folder.png"/>
+        <ImageBrush x:Key="closeBrush" ImageSource="/Icons/./close-button.png"/>
+        <ImageBrush x:Key="minimizeBrush" ImageSource="/Icons/./minimize-button.png"/>
+        <ImageBrush x:Key="resizeBrush" ImageSource="/Icons/./resize-button.png"/>
+
+        <ImageBrush x:Key="play_Brush" ImageSource="/Icons/./play-button.png"/>
+        <ImageBrush x:Key="pause_Brush" ImageSource="/Icons/./pause-button.png"/>
+        <ImageBrush x:Key="next_Brush" ImageSource="/Icons/./next.png"/>
+        <ImageBrush x:Key="repeat_Brush" ImageSource="/Icons/./repeat.png"/>
+
+
+
+    </Application.Resources>
+</Application>
