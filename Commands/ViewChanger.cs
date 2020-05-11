@@ -27,7 +27,11 @@ namespace MusicPlayerDesign.Commands
 
         public void Execute(object parameter)
         {
-            //MessageBox.Show(parameter.ToString());
+
+            if(parameter.ToString() == "OpenCurrentMusicPlay")
+            {
+                MessageBox.Show("Music");
+            }
 
             if (parameter.ToString() == "ChooseFolder" && viewModel.SelectedViewModel.ToString() == "MusicPlayerDesign.ViewModels.AddFolderViewModel")
             {

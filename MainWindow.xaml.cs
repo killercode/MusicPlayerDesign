@@ -25,6 +25,7 @@ namespace MusicPlayerDesign
         {
             InitializeComponent();
             DataContext = new MainViewModel();
+            this.MaxHeight = SystemParameters.MaximizedPrimaryScreenHeight - 8;
         }
     }
 }

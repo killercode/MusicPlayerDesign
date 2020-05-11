@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MusicPlayerDesign.ViewModels;
 
 namespace MusicPlayerDesign.Views
 {
@@ -23,6 +24,7 @@ namespace MusicPlayerDesign.Views
         public MusicListView()
         {
             InitializeComponent();
+            DataContext = new MusicListViewModel();
         }
     }
 }

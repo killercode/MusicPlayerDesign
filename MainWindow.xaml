@@ -14,7 +14,8 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="{DynamicResource n1_1}"
-        Icon="Icons/app-icon.ico">
+        Icon="Icons/app-icon.ico"
+        WindowState="{Binding Path=state, Mode=TwoWay}">
 
 
 
@@ -47,11 +48,11 @@
                    Grid.Row="0">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
                     <ColumnDefinition Width="30"></ColumnDefinition>
-                    <ColumnDefinition Width="30"></ColumnDefinition>
-                    <ColumnDefinition Width="8*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="20"></ColumnDefinition>
                     <ColumnDefinition Width="20"></ColumnDefinition>
                     <ColumnDefinition Width="20"></ColumnDefinition>
@@ -63,7 +64,7 @@
                         Height="20"
                         Style="{DynamicResource TransparentButtonStyle}"
                         Grid.Column="0"
-                        Margin="8,0,0,0"
+                        Margin="5,5,0,0"
                         Background="{DynamicResource chooseFolderBrush}"
                         Command="{Binding ViewChanger}"
                         CommandParameter="ChooseFolder">
@@ -75,7 +76,9 @@
                         Style="{DynamicResource TransparentButtonStyle}"
                         Grid.Column="7"
                         Margin="0,3,0,0"
-                        Background="{DynamicResource closeBrush}">
+                        Background="{DynamicResource closeBrush}"
+                        Command="{Binding DockButtons}"
+                        CommandParameter="Close">
                 </Button>
 
                 <Button x:Name="Resize"
@@ -84,7 +87,9 @@
                         Style="{DynamicResource TransparentButtonStyle}"
                         Grid.Column="6"
                         Margin="0,3,0,0"
-                        Background="{DynamicResource resizeBrush}">
+                        Background="{DynamicResource resizeBrush}"
+                        Command="{Binding DockButtons}"
+                        CommandParameter="Resize">
                 </Button>
 
                 <Button x:Name="Minimize"
@@ -93,7 +98,9 @@
                         Style="{DynamicResource TransparentButtonStyle}"
                         Grid.Column="5"
                         Margin="0,3,0,0"
-                        Background="{DynamicResource minimizeBrush}">
+                        Background="{DynamicResource minimizeBrush}"
+                        Command="{Binding DockButtons}"
+                        CommandParameter="Minimize">
                 </Button>
 
 
