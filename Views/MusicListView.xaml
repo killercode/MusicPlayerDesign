@@ -249,8 +249,7 @@
                                 <RowDefinition Height="*"></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <Label Content="{Binding Title, UpdateSourceTrigger=Explicit}"
-                                   
+                            <Label Content="{Binding Title}"
                                        Grid.Row="0"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"
@@ -259,7 +258,7 @@
                                        VerticalContentAlignment="Center"
                                        IsHitTestVisible="False"
                                        FontSize="12"></Label>
-                            <Label Content="{Binding Artist, UpdateSourceTrigger=PropertyChanged}"
+                            <Label Content="{Binding Artist}"
                                        Grid.Row="1"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"

@@ -16,6 +16,7 @@ namespace MusicPlayerDesign.ViewModels
     {
         private string _sourceDirectory = @"C:\Users\ricar\Music\Música";
         private List<Models.FileInfo> _directories = new List<Models.FileInfo>();
+
         public List<Models.FileInfo> Directories 
         { 
             get { return _directories; } 
@@ -25,37 +26,65 @@ namespace MusicPlayerDesign.ViewModels
         
         public MusicListViewModel()
         {
-            if(!Directories.Any() )
-            {
-                CreateListofFiles();
-                Console.WriteLine("\nExecuted");
-            }
-            else
-            {
-                Console.WriteLine("\nNot executed");
-            }
+            ExecuteRunAsync();
         }
 
-        public void CreateListofFiles()
+        private async void ExecuteRunAsync()
         {
-            List<string> mp3Files = Directory.EnumerateFiles(_sourceDirectory, "*.mp3").ToList();
-            mp3Files.ToArray();
-
-            for (int i = 0; i < mp3Files.Count; i++)
-            {
-                Directories.Insert(i,
-                    new Models.FileInfo
-                    {
-                        Directory = mp3Files[i],
-                        FileIndex = i,
-                        //Title = "file " + i.ToString()
-                        Title = TagLib.File.Create(mp3Files[i]).Tag.Title,
-                        Artist = TagLib.File.Create(mp3Files[i]).Tag.FirstArtist
-                    });
-            }
+            await RunAsync();
         }
 
 
 
+
+        private async Task RunAsync()
+        {
+            List<string> dirs = FilePaths();
+
+            for (int i = 0; i < dirs.Count; i++)
+            {
+                Models.FileInfo fileInfoItem = await Task.Run(() => CreateFileInfoAsync(dirs[i], i));
+                Directories.Add(fileInfoItem);
+            }
+
+        }
+
+
+
+        private async Task<Models.FileInfo> CreateFileInfoAsync(string file, int i)
+        {
+            Models.FileInfo fileInfo = await Task.Run(() => new Models.FileInfo
+            {
+                Directory = file,
+                FileIndex = i,
+                Title = TagLib.File.Create(file).Tag.Title,
+                Artist = TagLib.File.Create(file).Tag.FirstArtist
+            });
+
+            return fileInfo;
+        }
+
+
+
+
+        private List<string> FilePaths()
+        {
+            List<string> dirs = Directory.EnumerateFiles(_sourceDirectory, "*.mp3").ToList();
+            return dirs;
+        }
+
+       
     }
 }
+
+
+//___________________________________________________________________________________________________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
