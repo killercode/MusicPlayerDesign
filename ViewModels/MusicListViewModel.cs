@@ -9,68 +9,49 @@ using MusicPlayerDesign.Models;
 using MusicPlayerDesign.Views;
 using System.IO;
 using System.Windows;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace MusicPlayerDesign.ViewModels
 {
     public class MusicListViewModel:BaseViewModel
     {
         private string _sourceDirectory = @"C:\Users\ricar\Music\Música";
-        private List<Models.FileInfo> _directories = new List<Models.FileInfo>();
 
-        public List<Models.FileInfo> Directories 
+        private ObservableCollection<Models.FileInfo> _directories = new ObservableCollection<Models.FileInfo>();
+        public ObservableCollection<Models.FileInfo> Directories 
         { 
             get { return _directories; } 
-            set { _directories = value; } 
+            set { _directories = value; OnPropertyChanged("Directories"); } 
         }
-
         
+        private ObservableCollection<string> mp3Files = new ObservableCollection<string>();
+        
+        //_____________________________________________________ Constructor ____________________________________________________
         public MusicListViewModel()
         {
-            ExecuteRunAsync();
+            CreateFileInfoAsync();
         }
 
-        private async void ExecuteRunAsync()
+        private async void CreateFileInfoAsync()
         {
-            await RunAsync();
-        }
-
-
-
-
-        private async Task RunAsync()
-        {
-            List<string> dirs = FilePaths();
-
-            for (int i = 0; i < dirs.Count; i++)
-            {
-                Models.FileInfo fileInfoItem = await Task.Run(() => CreateFileInfoAsync(dirs[i], i));
-                Directories.Add(fileInfoItem);
-            }
-
-        }
-
-
-
-        private async Task<Models.FileInfo> CreateFileInfoAsync(string file, int i)
-        {
-            Models.FileInfo fileInfo = await Task.Run(() => new Models.FileInfo
-            {
-                Directory = file,
-                FileIndex = i,
-                Title = TagLib.File.Create(file).Tag.Title,
-                Artist = TagLib.File.Create(file).Tag.FirstArtist
+            await Task.Factory.StartNew(() => {
+                mp3Files = new ObservableCollection<string>(Directory.EnumerateFiles(_sourceDirectory, "*.mp3"));
             });
 
-            return fileInfo;
-        }
+            for (int i = 0; i < mp3Files.Count; i++)
+            {
+                Models.FileInfo fileInfo = new Models.FileInfo
+                {
+                    Directory = mp3Files[i],
+                    FileIndex = i,
+                    Title = TagLib.File.Create(mp3Files[i]).Tag.Title,
+                    Artist = TagLib.File.Create(mp3Files[i]).Tag.FirstArtist
+                };
+                Directories.Add(fileInfo);
+            }
 
 
-
-
-        private List<string> FilePaths()
-        {
-            List<string> dirs = Directory.EnumerateFiles(_sourceDirectory, "*.mp3").ToList();
-            return dirs;
         }
 
        

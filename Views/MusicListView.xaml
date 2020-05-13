@@ -9,6 +9,8 @@
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="400"
       Background="{DynamicResource n1_1}">
+    
+    
 
     <UserControl.Resources>
 
@@ -28,6 +30,8 @@
         </Style>
 
         
+
+
         <!--_______________________Scrollbar Style_____________________ -->
         <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
             <Setter Property="Visibility" Value="Hidden"/>
@@ -152,7 +156,8 @@
                      Foreground="{DynamicResource n1_4}"
                      ScrollViewer.CanContentScroll="True"
                      VerticalAlignment="Top"
-                     ItemsSource="{Binding Directories}">
+                     ItemsSource="{Binding Directories, Mode=TwoWay, IsAsync=True}"
+                     IsSynchronizedWithCurrentItem="True">
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
                         <Setter Property="Template">
