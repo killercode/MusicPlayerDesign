@@ -17,7 +17,7 @@ namespace MusicPlayerDesign.ViewModels
     public class MusicListViewModel:BaseViewModel
     {
         private string _sourceDirectory = @"C:\Users\ricar\Music\Música";
-
+        
         private ObservableCollection<Models.FileInfo> _directories = new ObservableCollection<Models.FileInfo>();
         public ObservableCollection<Models.FileInfo> Directories 
         { 
@@ -41,14 +41,23 @@ namespace MusicPlayerDesign.ViewModels
 
             for (int i = 0; i < mp3Files.Count; i++)
             {
-                Models.FileInfo fileInfo = new Models.FileInfo
+                await Task.Run(() =>
                 {
-                    Directory = mp3Files[i],
-                    FileIndex = i,
-                    Title = TagLib.File.Create(mp3Files[i]).Tag.Title,
-                    Artist = TagLib.File.Create(mp3Files[i]).Tag.FirstArtist
-                };
-                Directories.Add(fileInfo);
+                    Models.FileInfo fileInfo = new Models.FileInfo
+                    {
+                        Directory = mp3Files[i],
+                        FileIndex = i,
+                        Title = TagLib.File.Create(mp3Files[i]).Tag.Title,
+                        Artist = TagLib.File.Create(mp3Files[i]).Tag.FirstArtist
+                    };
+                    
+                    App.Current.Dispatcher.Invoke((System.Action)delegate
+                    {
+                        Directories.Add(fileInfo);
+                    });
+
+                });
+                
             }
 
 

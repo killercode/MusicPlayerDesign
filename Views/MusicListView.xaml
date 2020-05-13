@@ -156,7 +156,10 @@
                      Foreground="{DynamicResource n1_4}"
                      ScrollViewer.CanContentScroll="True"
                      VerticalAlignment="Top"
-                     ItemsSource="{Binding Directories, Mode=TwoWay, IsAsync=True}"
+                     ItemsSource="{Binding Directories, 
+                Mode=TwoWay, 
+                IsAsync=True, 
+                BindsDirectlyToSource=True, UpdateSourceTrigger=PropertyChanged}"
                      IsSynchronizedWithCurrentItem="True">
                 <ListBox.Resources>
                     <Style TargetType="ListBoxItem" BasedOn="{StaticResource {x:Type ListBoxItem}}">
