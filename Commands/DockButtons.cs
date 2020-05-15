@@ -1,18 +1,22 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using MusicPlayerDesign.ViewModels;
 using System.Windows;
-using MusicPlayerDesign;
+
 
 namespace MusicPlayerDesign.Commands
 {
+    /// <summary>
+    /// Button Dock
+    /// </summary>
     public class DockButtons : ICommand
     {
         private MainViewModel viewModel;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="viewModel">ViewModel</param>
         public DockButtons(MainViewModel viewModel)
         {
             this.viewModel = viewModel;
@@ -22,11 +26,14 @@ namespace MusicPlayerDesign.Commands
 
         public bool CanExecute(object parameter)
         {
+            // Weird stuff??? It can ALWAYS be execute!
             return true;
         }
 
         public void Execute(object parameter)
         {
+            // Note to the original developer:
+            // Guess what will happen if send a null! NPE FTW!
             if(parameter.ToString() == "Close")
             {
                 App.Current.Shutdown();

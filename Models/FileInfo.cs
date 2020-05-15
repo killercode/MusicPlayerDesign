@@ -1,61 +1,67 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.ComponentModel;
-using System.Collections.ObjectModel;
-
+﻿
 namespace MusicPlayerDesign.Models
 {
     public class FileInfo
     {
-        //____________________ Source Directory to search mp3 files (##NOT USED##) ____________________
         private string _sourceDirectory;
+        private string _directory;
+        private int _fileindex;
+        private string _title;
+        private string _artist;
+
+        /// <summary>
+        /// Source Directory to search mp3 Files
+        /// </summary>
+        /// <remarks>
+        /// Not Used
+        /// </remarks>
         public string SourceDirectory
         {
-            get { return this._sourceDirectory; }
-            set { this._sourceDirectory = value; }
+            get { return _sourceDirectory; }
+            set { _sourceDirectory = value; }
         }
-
-        //____________________ Directory for each file ____________________
-        private string _directory;
+        
+        /// <summary>
+        /// Directory for each file
+        /// </summary>
         public string Directory
         {
-            get { return this._directory; }
-            set { this._directory = value; }
+            get { return _directory; }
+            set { _directory = value; }
         }
-
-        //____________________ Index of client list for each file ____________________
-        private int _fileindex;
+        
+        /// <summary>
+        /// Index of the client list for each file
+        /// </summary>
         public int FileIndex
         {
-            get { return this._fileindex; }
-            set { this._fileindex = value; }
+            get { return _fileindex; }
+            set { _fileindex = value; }
         }
 
-        //____________________ Title tag for each mp3 file ____________________
-        private string _title;
+        /// <summary>
+        /// Title tag for each mp3 file
+        /// </summary>
         public string Title
         {
-            get { return this._title; }
+            get { return _title; }
             set 
             { 
                 if(value == null)
                 {
-                    this._title = this._directory;
+                    _title = _directory;
                 }
                 else
                 {
-                    this._title = value;
+                    _title = value;
                 }
                  
             }
         }
-
-        //____________________ Artist tag for each mp3 file ____________________
-        private string _artist;
+        
+        /// <summary>
+        /// Artist tag for each mp3 file
+        /// </summary>
         public string Artist
         {
             get { return this._artist; }
@@ -69,10 +75,7 @@ namespace MusicPlayerDesign.Models
                 {
                     this._artist = value;
                 }
-
             }
         }
     }
-
-    
 }

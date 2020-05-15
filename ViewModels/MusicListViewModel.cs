@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using MusicPlayerDesign.Commands;
-using System.Windows.Input;
-using MusicPlayerDesign.Models;
-using MusicPlayerDesign.Views;
+﻿using System.Collections.ObjectModel;
 using System.IO;
-using System.Windows;
-using System.Collections.ObjectModel;
-using System.Collections.Specialized;
+using System.Threading.Tasks;
 
 namespace MusicPlayerDesign.ViewModels
 {
+    /// <summary>
+    /// ViewModel that display the MusicList
+    /// </summary>
     public class MusicListViewModel:BaseViewModel
     {
         private string _sourceDirectory = @"C:\Users\ricar\Music\Música";
         
         private ObservableCollection<Models.FileInfo> _directories = new ObservableCollection<Models.FileInfo>();
-        public ObservableCollection<Models.FileInfo> Directories 
+
+        private ObservableCollection<string> mp3Files = new ObservableCollection<string>();
+
+        public ObservableCollection<Models.FileInfo> Directories
         { 
             get { return _directories; } 
             set { _directories = value; OnPropertyChanged("Directories"); } 
         }
         
-        private ObservableCollection<string> mp3Files = new ObservableCollection<string>();
-        
-        //_____________________________________________________ Constructor ____________________________________________________
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MusicListViewModel()
         {
             CreateFileInfoAsync();
@@ -48,27 +44,20 @@ namespace MusicPlayerDesign.ViewModels
                         Directory = mp3Files[i],
                         FileIndex = i,
                         Title = TagLib.File.Create(mp3Files[i]).Tag.Title,
-                        Artist = TagLib.File.Create(mp3Files[i]).Tag.FirstArtist
+                        Artist = !string.IsNullOrEmpty(TagLib.File.Create(mp3Files[i]).Tag.FirstPerformer) ? 
+                                 TagLib.File.Create(mp3Files[i]).Tag.FirstPerformer : 
+                                 TagLib.File.Create(mp3Files[i]).Tag.FirstAlbumArtist
                     };
                     
-                    App.Current.Dispatcher.Invoke((System.Action)delegate
+                    App.Current.Dispatcher.Invoke(delegate
                     {
                         Directories.Add(fileInfo);
                     });
-
-                });
-                
+                });   
             }
-
-
-        }
-
-       
+        }      
     }
 }
-
-
-//___________________________________________________________________________________________________________________________________________________________________________________
 
 
 
